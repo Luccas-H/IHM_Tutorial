@@ -1,0 +1,43 @@
+:root {
+  color-scheme: dark;
+  font-family: Manrope, "Segoe UI", sans-serif;
+  color: #f4f2ed;
+  background: #101112;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --coal: #101112;
+  --graphite: #17191b;
+  --steel: #222528;
+  --line: #303438;
+  --ivory: #f4f2ed;
+  --muted: #a2a6aa;
+  --dim: #72777c;
+  --amber: #ff9f2e;
+  --amber-soft: #3a2b19;
+  --green: #67c587;
+  --green-soft: #1d3326;
+  --danger: #ef7b70;
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { min-width: 320px; min-height: 100%; margin: 0; }
+body { min-height: 100vh; background: var(--coal); overflow: hidden; }
+button, input, textarea { font: inherit; }
+button { color: inherit; }
+button:focus-visible, input:focus-visible, textarea:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+button { cursor: pointer; }
+::selection { color: #17110a; background: var(--amber); }
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #3b3f43; border: 2px solid transparent; background-clip: content-box; border-radius: 999px; }
+
+.primary-button { border: 0; border-radius: var(--radius-sm); background: var(--amber); color: #1a1208; font-weight: 800; min-height: 42px; padding: 0 17px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: transform 150ms ease, background 150ms ease; }
+.primary-button:hover { background: #ffad46; transform: translateY(-1px); }
+.primary-button:disabled { cursor: wait; opacity: .7; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}

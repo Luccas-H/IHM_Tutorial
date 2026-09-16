@@ -1,0 +1,22 @@
+name: e-o-tutoras
+
+services:
+  database:
+    image: postgres:16-alpine
+    container_name: e-o-tutoras-db
+    environment:
+      POSTGRES_DB: tutoras
+      POSTGRES_USER: tutoras
+      POSTGRES_PASSWORD: tutoras
+    ports:
+      - "55432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tutoras -d tutoras"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+    volumes:
+      - tutoras_data:/var/lib/postgresql/data
+
+volumes:
+  tutoras_data:

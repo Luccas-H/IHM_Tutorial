@@ -1,0 +1,32 @@
+# Dependências e builds
+node_modules/
+dist/
+coverage/
+.vite/
+*.tsbuildinfo
+
+# Ambiente local
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editores e sistema operacional
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Arquivos temporários
+*.tmp
+*.swp
+*~
+
+# Planejamento interno do desenvolvimento
+docs/superpowers/

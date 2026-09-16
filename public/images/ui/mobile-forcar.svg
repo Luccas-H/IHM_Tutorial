@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640" role="img">
+  <title>Informações do aplicativo</title><desc>Forçar parada. Não toque em Limpar dados.</desc>
+  <rect width="1200" height="640" fill="#101112"/><rect x="110" y="58" width="980" height="524" rx="28" fill="#1a1c1e" stroke="#34383b" stroke-width="2"/>
+  <rect x="110" y="58" width="980" height="68" rx="28" fill="#222528"/><rect x="110" y="98" width="980" height="28" fill="#222528"/>
+  <circle cx="155" cy="92" r="8" fill="#ef7b70"/><circle cx="183" cy="92" r="8" fill="#ff9f2e"/><circle cx="211" cy="92" r="8" fill="#67c587"/>
+  <text x="255" y="99" fill="#f4f2ed" font-family="Arial, sans-serif" font-size="22" font-weight="700">Informações do aplicativo</text>
+  <rect x="145" y="164" width="215" height="380" rx="18" fill="#151719" stroke="#2c3033"/><text x="176" y="211" fill="#777c80" font-family="Arial, sans-serif" font-size="17">Ação de solução</text>
+  <rect x="167" y="241" width="170" height="48" rx="10" fill="#2b241a" stroke="#6b5126"/><circle cx="192" cy="265" r="8" fill="#ff9f2e"/><rect x="212" y="257" width="94" height="16" rx="8" fill="#b7823e"/>
+  <rect x="167" y="311" width="145" height="13" rx="6" fill="#303438"/><rect x="167" y="346" width="122" height="13" rx="6" fill="#303438"/><rect x="167" y="381" width="158" height="13" rx="6" fill="#303438"/>
+  <rect x="398" y="164" width="655" height="380" rx="18" fill="#141618" stroke="#2c3033"/>
+  <text x="443" y="225" fill="#9ca1a4" font-family="Arial, sans-serif" font-size="18">Passo visual</text>
+  <text x="443" y="282" fill="#f4f2ed" font-family="Arial, sans-serif" font-size="32" font-weight="700">Forçar parada</text>
+  <text x="443" y="323" fill="#969b9e" font-family="Arial, sans-serif" font-size="20">Não toque em Limpar dados</text>
+  <rect x="443" y="371" width="500" height="88" rx="14" fill="#222528" stroke="#3b4044"/><circle cx="487" cy="415" r="20" fill="#ff9f2e"/><path d="M478 415l7 7 13-16" fill="none" stroke="#211607" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="524" y="397" width="330" height="16" rx="8" fill="#5f6468"/><rect x="524" y="427" width="245" height="11" rx="6" fill="#383c3f"/>
+  <path d="M943 236l42 42-42 42" fill="none" stroke="#ff9f2e" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity=".8"/>
+</svg>

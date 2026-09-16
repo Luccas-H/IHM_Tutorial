@@ -1,0 +1,48 @@
+{
+  "name": "e-o-tutoras",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -n WEB,API -c '#ff9f2e,#67c587' 'vite --host 127.0.0.1' 'tsx watch server/index.ts'",
+    "build": "tsc --noEmit && vite build",
+    "start": "tsx server/index.ts",
+    "demo": "docker compose up -d --wait database && npm run db:migrate && npm run dev",
+    "db:up": "docker compose up -d database",
+    "db:down": "docker compose down",
+    "db:migrate": "tsx scripts/migrate.ts",
+    "test": "vitest",
+    "test:run": "vitest run"
+  },
+  "dependencies": {
+    "@fontsource/ibm-plex-mono": "latest",
+    "@fontsource/manrope": "latest",
+    "@tanstack/react-query": "latest",
+    "dotenv": "latest",
+    "express": "latest",
+    "lucide-react": "latest",
+    "pg": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "latest",
+    "@testing-library/react": "latest",
+    "@testing-library/user-event": "latest",
+    "@types/express": "latest",
+    "@types/node": "latest",
+    "@types/pg": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@types/supertest": "latest",
+    "@vitejs/plugin-react": "latest",
+    "concurrently": "latest",
+    "jsdom": "^26.1.0",
+    "supertest": "latest",
+    "tsx": "latest",
+    "typescript": "latest",
+    "vite": "latest",
+    "vitest": "latest"
+  }
+}

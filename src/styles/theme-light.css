@@ -1,0 +1,115 @@
+:root {
+  color-scheme: light;
+  color: #18212b;
+  background: #f2f5f7;
+  --coal: #eef2f5;
+  --graphite: #ffffff;
+  --steel: #f2f5f7;
+  --line: #d9e0e5;
+  --ivory: #18212b;
+  --muted: #5f6c77;
+  --dim: #7c8791;
+  --amber: #e87513;
+  --amber-soft: #fff0df;
+  --green: #287a4b;
+  --green-soft: #e9f6ee;
+  --danger: #b42318;
+  --ink: #18212b;
+  --canvas: #eef2f5;
+}
+
+body { background: var(--canvas); }
+::-webkit-scrollbar-thumb { background: #b8c1c8; border: 2px solid transparent; background-clip: content-box; }
+.primary-button { color: #fff; box-shadow: 0 5px 14px #e875132b; }
+.primary-button:hover { background: #cf6209; }
+
+.app-shell { grid-template-columns: 230px minmax(320px, 390px) minmax(0, 1fr); background: var(--canvas); transition: grid-template-columns 220ms ease; }
+.app-shell.tutorials-expanded { grid-template-columns: 230px minmax(420px, 470px) minmax(0, 1fr); }
+.sidebar, .tutorial-list-panel, .reader-panel { box-shadow: 0 9px 28px #2e3d4a0b; }
+.brand-mark { width: 40px; height: 40px; flex: none; }
+.nav-label { margin: 0 10px 8px; color: var(--dim); font-size: 9px; font-weight: 800; letter-spacing: .02em; }
+.sidebar nav button:hover { color: var(--ink); background: #f4f6f8; }
+.sidebar nav button.active { color: #fff; background: var(--ink); border-color: var(--ink); box-shadow: 0 7px 18px #18212b24; }
+.sidebar nav button.active svg { color: #ff9c42; }
+.sidebar nav button em { background: #eef2f5; color: var(--ink); }
+.sidebar nav button.active em { background: var(--amber); color: #fff; }
+.sidebar-tip { background: #f7f9fa; border-color: var(--line); }
+.sidebar footer { color: #8a959d; }
+
+.tutorial-list-panel > header > span { display: none; }
+.list-header-actions { display: flex; align-items: center; gap: 7px; }
+.list-header-actions > span, .panel-size-toggle { width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; }
+.list-header-actions > span { background: var(--amber-soft); border: 1px solid #ffd4a6; color: #bd5908; font-size: 11px; font-weight: 800; }
+.panel-size-toggle { border: 1px solid var(--line); background: #fff; color: var(--muted); }
+.panel-size-toggle:hover { border-color: var(--amber); color: var(--amber); background: var(--amber-soft); }
+.search-field { background: #f7f9fa; }
+.search-field:focus-within { border-color: #f0a15c; box-shadow: 0 0 0 3px #e8751317; }
+.search-field input::placeholder { color: #909aa2; }
+.tutorial-item:hover { background: #f7f9fa; }
+.tutorial-item.active { background: #fff8f0; border-color: #f2a663; box-shadow: 0 7px 18px #a64b0710; }
+.tutorial-item.active::before { width: 4px; top: 10px; bottom: 10px; }
+.tutorial-icon { background: #f4f6f8; border-color: var(--line); }
+.tutorial-item.active .tutorial-icon { color: #bd5908; background: #ffe8ce; border-color: #ffc27f; }
+.tutorial-meta { color: #78838c; }
+.item-chevron { color: #a4adb4; }
+.list-skeleton, .reader-skeleton div { background: #edf1f3; }
+.mobile-back { background: #fffffff2; color: var(--ink); }
+
+.tutorial-hero { color: #fff; }
+.tutorial-hero > img { filter: saturate(.82) contrast(1.04) brightness(.78); }
+.hero-shade { background: linear-gradient(180deg, #11182008 0%, #11182055 38%, #111820ed 100%); }
+.platforms span { background: #18212bcc; color: #fff; border-color: #ffffff35; }
+.hero-content > p { color: #e7ebed; }
+.hero-meta { color: #d8dee2; }
+.hero-meta span:first-child, .hero-content h1 { color: #fff; }
+.tutorial-tabs { background: #fffffff2; }
+.tutorial-tabs button.active { color: #b65307; background: var(--amber-soft); }
+.tutorial-tabs button.active::after { height: 3px; background: var(--amber); }
+.tutorial-tabs button span { background: #e8edf0; }
+.intro-block p { color: #4f5d68; }
+.progress-summary { background: #f7f9fa; }
+.progress-track { background: #dfe5e9; }
+.timeline li.current .timeline-marker { color: #fff; box-shadow: 0 0 0 5px #e8751317; }
+.timeline li.done .timeline-marker { color: #fff; }
+.step-card { background: #fff; box-shadow: 0 6px 18px #2e3d4a0a; }
+.timeline li.current .step-card { border-color: #f2a663; box-shadow: 0 8px 22px #a64b0710; }
+.complete { background: #f4f6f8; }
+.complete.active { border-color: #a8d8ba; }
+.media-figure { background: #f3f6f8; }
+.media-figure figcaption { color: #65727c; background: #fff; }
+.expand-media { background: #fff; color: var(--ink); }
+.keycap { border-color: #aeb8c0; background: #fff; color: var(--ink); box-shadow: 0 2px #c9d0d5; }
+.menu-path { background: #f7f9fa; }
+.menu-path b { color: #3e4b55; }
+.command-block { border-color: #2f3b45; background: #17212a; }
+.command-head { border-color: #35414b; background: #202c36; }
+.command-head > span { color: #c4cbd0; }
+.command-head button { border-color: #48545d; background: #2b3740; color: #fff; }
+.command-block code { color: #d7f2e1; }
+.warning { color: #9a4a06; background: #fff5e8; border-color: #f2c48f; }
+.warning p { color: #74451d; }
+.expected { color: #1f6940; border-color: #a8d8ba; }
+.expected p { color: #3d6b50; }
+.rating-panel { border-color: #f2c48f; background: #fff8ef; }
+.rating-icon { color: #fff; }
+.rating-panel p, .rating-panel legend { color: #766b5d; }
+.score-row span { border-color: #e1c8ad; background: #fff; color: #6d6257; }
+.score-row label:hover span, .score-row label.selected span { color: #fff; }
+.request-error { color: var(--danger); }
+.composer, .comment { background: #fff; }
+.composer label { color: #56636d; }
+.composer input, .composer textarea { background: #f8fafb; color: var(--ink); }
+.composer input:focus, .composer textarea:focus { border-color: #f0a15c; box-shadow: 0 0 0 3px #e8751317; }
+.replying { color: #9c4b09; }
+.comment .comment { border-left-color: #f0b06f; background: #f8fafb; }
+.comment-content > p { color: #46535d; }
+.comment-actions button:hover { color: var(--ink); }
+
+@media (max-width: 1024px) {
+  .app-shell, .app-shell.tutorials-expanded { grid-template-columns: 74px 330px minmax(0, 1fr); }
+  .nav-label, .panel-size-toggle { display: none; }
+}
+
+@media (max-width: 759px) {
+  .app-shell, .app-shell.tutorials-expanded { grid-template-columns: 72px minmax(0, 1fr); }
+}
