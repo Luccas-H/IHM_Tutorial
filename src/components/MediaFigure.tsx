@@ -1,5 +1,6 @@
 import { ImageIcon, Maximize2, X } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import type { StepMedia } from '../domain/types'
 
 export function MediaFigure({ media }: { media: StepMedia }) {
@@ -20,10 +21,10 @@ export function MediaFigure({ media }: { media: StepMedia }) {
       <figcaption>{media.caption}</figcaption>
       {!failed && <button type="button" className="expand-media" onClick={() => setOpen(true)}><Maximize2 size={15} /> Abrir imagem</button>}
     </figure>
-    {open && <div className="lightbox" role="dialog" aria-modal="true" aria-label="Imagem ampliada" onMouseDown={(event) => event.currentTarget === event.target && setOpen(false)}>
+    {open && createPortal(<div className="lightbox" role="dialog" aria-modal="true" aria-label="Imagem ampliada" onMouseDown={(event) => event.currentTarget === event.target && setOpen(false)}>
       <button ref={closeRef} type="button" onClick={() => setOpen(false)} aria-label="Fechar imagem"><X /></button>
       <img src={media.src} alt={media.alt} />
       <p>{media.caption}</p>
-    </div>}
+    </div>, document.body)}
   </>
 }

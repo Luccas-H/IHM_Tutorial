@@ -128,6 +128,27 @@ describe('App', () => {
     expect(within(screen.getByRole('group', { name: 'Sistema deste tutorial' })).getByRole('button', { name: 'Linux' })).toHaveAttribute('aria-pressed', 'true')
   })
 
+  it('keeps opening tutorials on the detected system after the user picks "all tutorials"', async () => {
+    localStorage.removeItem('e-o-tutoras:preferred-platform')
+    vi.spyOn(window.navigator, 'platform', 'get').mockReturnValue('Linux x86_64')
+    vi.stubGlobal('fetch', vi.fn(async (input: RequestInfo | URL) => {
+      const url = String(input)
+      const body = url.includes('/comments') ? [] : url.includes('/api/tutorials/') ? detail : [summary]
+      return new Response(JSON.stringify(body), { status: 200, headers: { 'Content-Type': 'application/json' } })
+    }))
+    const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } })
+    render(<QueryClientProvider client={queryClient}><App /></QueryClientProvider>)
+
+    const filters = screen.getByRole('navigation', { name: 'Filtro de dispositivos' })
+    await userEvent.click(await within(filters).findByRole('button', { name: /Todos os tutoriais/ }))
+    cleanup()
+    render(<QueryClientProvider client={new QueryClient({ defaultOptions: { queries: { retry: false } } })}><App /></QueryClientProvider>)
+
+    expect(await within(screen.getByRole('navigation', { name: 'Filtro de dispositivos' })).findByRole('button', { name: /Todos os tutoriais/ })).toHaveAttribute('aria-pressed', 'true')
+    expect(await screen.findByRole('heading', { name: 'Abra a ferramenta do Linux' })).toBeInTheDocument()
+    expect(within(screen.getByRole('group', { name: 'Sistema deste tutorial' })).getByRole('button', { name: 'Linux' })).toHaveAttribute('aria-pressed', 'true')
+  })
+
   it('switches the theme and remembers the user choice', async () => {
     vi.stubGlobal('fetch', vi.fn(async (input: RequestInfo | URL) => {
       const url = String(input)

@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { loadPlatformPreference } from './platform-preference'
+import { loadPlatformFilter, loadPlatformPreference } from './platform-preference'
 
 function mockBrowser({ userAgent, platform, uaPlatform, touchPoints = 0 }: { userAgent: string; platform: string; uaPlatform?: string; touchPoints?: number }) {
   vi.spyOn(window.navigator, 'userAgent', 'get').mockReturnValue(userAgent)
@@ -24,6 +24,14 @@ describe('detecção automática do sistema', () => {
   ] as const)('%s', (_, browser, expected) => {
     mockBrowser(browser)
     expect(loadPlatformPreference()).toBe(expected)
+  })
+
+  it('usa o sistema detectado quando uma versão antiga salvou "todos os tutoriais"', () => {
+    mockBrowser({ userAgent: 'Mozilla/5.0 (X11; Linux x86_64)', platform: 'Linux x86_64' })
+    localStorage.setItem('e-o-tutoras:preferred-platform', 'all')
+    const preference = loadPlatformPreference()
+    expect(preference).toBe('Linux')
+    expect(loadPlatformFilter(preference)).toBe('all')
   })
 
   it('respeita a escolha salva pelo usuário', () => {

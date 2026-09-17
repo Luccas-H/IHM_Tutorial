@@ -8,7 +8,7 @@ import { TutorialView } from '../components/TutorialView'
 import type { Platform, PlatformFilter } from '../domain/types'
 import { useVisitorId } from '../hooks/useVisitorId'
 import { filterTutorials } from '../lib/tutorial-filter'
-import { filterToPreference, loadPlatformPreference, platformToFilter, savePlatformPreference } from '../lib/platform-preference'
+import { filterToPreference, loadPlatformFilter, loadPlatformPreference, platformToFilter, savePlatformFilter, savePlatformPreference } from '../lib/platform-preference'
 import { loadCompletedTutorials, subscribeToProgress } from '../lib/progress'
 import { applyTheme, loadThemePreference, saveThemePreference, transitionTheme } from '../lib/theme-preference'
 import { withViewTransition } from '../lib/view-transition'
@@ -19,7 +19,7 @@ export function App() {
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null)
   const [query, setQuery] = useState('')
   const [platformPreference, setPlatformPreference] = useState(loadPlatformPreference)
-  const [platform, setPlatform] = useState<PlatformFilter>(() => platformToFilter(platformPreference))
+  const [platform, setPlatform] = useState<PlatformFilter>(() => loadPlatformFilter(platformPreference))
   const [mobileDetail, setMobileDetail] = useState(false)
   const [tutorialListCollapsed, setTutorialListCollapsed] = useState(false)
   const [completedPlatforms, setCompletedPlatforms] = useState(loadCompletedTutorials)
@@ -31,18 +31,20 @@ export function App() {
   const readerRef = useRef<HTMLElement>(null)
   const detailId = detail.data?.id
   useEffect(() => { if (readerRef.current) readerRef.current.scrollTop = 0 }, [detailId])
+  const changeListFilter = (value: PlatformFilter) => { setPlatform(value); savePlatformFilter(value) }
   const select = (slug: string, completedPlatform?: Platform) => {
     if (completedPlatform) {
-      setPlatformPreference(completedPlatform); setPlatform(platformToFilter(completedPlatform)); savePlatformPreference(completedPlatform)
+      setPlatformPreference(completedPlatform); savePlatformPreference(completedPlatform); changeListFilter(platformToFilter(completedPlatform))
     }
     setSelectedSlug(slug); setMobileDetail(true)
   }
   const changeFilter = (value: PlatformFilter) => {
     const preference = filterToPreference(value, platformPreference)
-    setPlatform(value); setPlatformPreference(preference); savePlatformPreference(preference); setMobileDetail(false)
+    changeListFilter(value); setPlatformPreference(preference); savePlatformPreference(preference); setMobileDetail(false)
   }
   const changeTutorialPlatform = (value: Exclude<typeof platformPreference, 'all'>) => {
-    setPlatformPreference(value); setPlatform(platformToFilter(value)); savePlatformPreference(value)
+    setPlatformPreference(value); savePlatformPreference(value)
+    if (platform !== 'all') changeListFilter(platformToFilter(value))
   }
   const toggleTutorialList = () => withViewTransition(() => flushSync(() => setTutorialListCollapsed((value) => !value)))
   const toggleTheme = () => {
