@@ -1,4 +1,4 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import type { CommentInput, CommentRecord, RatingSummary, Tutorial, TutorialSummary } from '../domain/types'
 import { previewAverage } from '../lib/ratings'
 import { request } from './client'
@@ -18,6 +18,8 @@ export const useTutorial = (slug: string | null, visitorId: string) => useQuery(
   queryKey: tutorialKeys.detail(slug ?? '', visitorId),
   queryFn: () => request<Tutorial>(`/api/tutorials/${slug}?visitorId=${visitorId}`),
   enabled: Boolean(slug),
+  // mantém o tutorial atual na tela enquanto o próximo carrega, sem piscar o skeleton
+  placeholderData: keepPreviousData,
 })
 
 export const useComments = (tutorialId: string | undefined, visitorId: string) => useQuery({

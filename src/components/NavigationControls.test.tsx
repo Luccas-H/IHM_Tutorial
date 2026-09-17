@@ -28,7 +28,7 @@ describe('navigation controls', () => {
     expect(screen.getByRole('img', { name: 'Símbolo do É o Tutoras' })).toBeInTheDocument()
   })
 
-  it('lets the user increase the tutorial panel width', async () => {
+  it('lets the user collapse the tutorial library', async () => {
     const onToggleSize = vi.fn()
     render(<TutorialList
       tutorials={[tutorial]}
@@ -37,11 +37,11 @@ describe('navigation controls', () => {
       onQueryChange={() => undefined}
       onSelect={() => undefined}
       loading={false}
-      expanded={false}
-      onToggleSize={onToggleSize}
+      collapsed={false}
+      onToggleCollapsed={onToggleSize}
     />)
 
-    await userEvent.click(screen.getByRole('button', { name: 'Aumentar aba Tutoriais' }))
+    await userEvent.click(screen.getByRole('button', { name: 'Recolher biblioteca' }))
     expect(onToggleSize).toHaveBeenCalledOnce()
   })
 })

@@ -16,6 +16,8 @@
   --danger: #b42318;
   --ink: #18212b;
   --canvas: #eef2f5;
+  --bloom-warm: #f5a55c4a;
+  --bloom-cool: #77a9c947;
 }
 
 body { background: var(--canvas); }
@@ -23,11 +25,31 @@ body { background: var(--canvas); }
 .primary-button { color: #fff; box-shadow: 0 5px 14px #e875132b; }
 .primary-button:hover { background: #cf6209; }
 
-.app-shell { grid-template-columns: 230px minmax(320px, 390px) minmax(0, 1fr); background: var(--canvas); transition: grid-template-columns 220ms ease; }
-.app-shell.tutorials-expanded { grid-template-columns: 230px minmax(420px, 470px) minmax(0, 1fr); }
-.sidebar, .tutorial-list-panel, .reader-panel { box-shadow: 0 9px 28px #2e3d4a0b; }
+.app-shell { grid-template-columns: minmax(562px, 632px) minmax(0, 1fr); background: var(--canvas); transition: grid-template-columns 220ms ease; }
+.library-shell { transition: grid-template-columns 220ms ease; }
+.library-shell .sidebar { background: radial-gradient(circle at 0 100%, #e4f1f6 0, transparent 42%), #ffffffed; backdrop-filter: blur(18px); box-shadow: 0 9px 28px #2e3d4a0b; }
+.library-shell .tutorial-list-panel { background: radial-gradient(circle at 12% 92%, #fff0df 0, transparent 43%), #ffffffed; backdrop-filter: blur(18px); box-shadow: 0 9px 28px #2e3d4a0b; }
+@media (min-width: 760px) {
+  .app-shell.tutorials-collapsed { grid-template-columns: 318px minmax(0, 1fr); }
+  .tutorials-collapsed .library-shell { grid-template-columns: 230px 76px; }
+  .tutorials-collapsed .tutorial-list-panel > header { padding: 0; justify-content: center; }
+  .tutorials-collapsed .list-title, .tutorials-collapsed .library-sections, .tutorials-collapsed .search-field, .tutorials-collapsed .tutorial-copy, .tutorials-collapsed .item-chevron, .tutorials-collapsed .empty-list p, .tutorials-collapsed .empty-list button { display: none; }
+  .tutorials-collapsed .list-header-actions > span { display: none; }
+  .tutorials-collapsed .panel-size-toggle { width: 38px; height: 38px; border-radius: 10px; }
+  .tutorials-collapsed .tutorial-content, .tutorials-collapsed .community-content { width: min(1280px, calc(100% - 64px)); }
+  .tutorials-collapsed .tutorial-tabs { padding-inline: max(32px, calc((100% - 1280px) / 2)); }
+  .tutorials-collapsed .tutorial-items { padding: 12px 8px; }
+  .tutorials-collapsed .tutorial-item { grid-template-columns: 1fr; justify-items: center; padding: 8px 0; }
+  .tutorials-collapsed .tutorial-item + .tutorial-item { margin-top: 6px; }
+  .tutorials-collapsed .tutorial-item.active::before { top: 12px; bottom: 12px; }
+  .tutorials-collapsed .tutorial-icon { width: 42px; height: 42px; }
+  .tutorials-collapsed .list-skeleton { height: 58px; }
+  .tutorials-collapsed .empty-list { min-height: 0; padding: 12px 0; }
+  .tutorials-collapsed .empty-list strong { font-size: 9px; }
+}
+.reader-panel { background: radial-gradient(circle at 100% 86%, #e5f0f6 0, transparent 38%), #ffffffed; backdrop-filter: blur(18px); box-shadow: 0 9px 28px #2e3d4a0b; }
 .brand-mark { width: 40px; height: 40px; flex: none; }
-.nav-label { margin: 0 10px 8px; color: var(--dim); font-size: 9px; font-weight: 800; letter-spacing: .02em; }
+.nav-label { height: 41px; display: flex; align-items: center; margin: 0 10px 10px; color: var(--dim); font-size: 9px; font-weight: 800; letter-spacing: .02em; }
 .sidebar nav button:hover { color: var(--ink); background: #f4f6f8; }
 .sidebar nav button.active { color: #fff; background: var(--ink); border-color: var(--ink); box-shadow: 0 7px 18px #18212b24; }
 .sidebar nav button.active svg { color: #ff9c42; }
@@ -40,8 +62,13 @@ body { background: var(--canvas); }
 .list-header-actions { display: flex; align-items: center; gap: 7px; }
 .list-header-actions > span, .panel-size-toggle { width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; }
 .list-header-actions > span { background: var(--amber-soft); border: 1px solid #ffd4a6; color: #bd5908; font-size: 11px; font-weight: 800; }
-.panel-size-toggle { border: 1px solid var(--line); background: #fff; color: var(--muted); }
+.panel-size-toggle { border: 1px solid var(--line); background: #fff; color: var(--muted); cursor: pointer; transition: color 150ms ease, background 150ms ease, border-color 150ms ease; }
 .panel-size-toggle:hover { border-color: var(--amber); color: var(--amber); background: var(--amber-soft); }
+.theme-toggle { background: #ffffffb8; }
+.theme-toggle:hover { background: #fff8f0; }
+.library-sections { background: #e9eef2; }
+.library-sections button.active { background: #fff; border-color: #d9e0e5; color: var(--ink); box-shadow: 0 3px 10px #18212b12; }
+.library-sections button span { background: #fff0df; color: #bd5908; }
 .search-field { background: #f7f9fa; }
 .search-field:focus-within { border-color: #f0a15c; box-shadow: 0 0 0 3px #e8751317; }
 .search-field input::placeholder { color: #909aa2; }
@@ -51,6 +78,7 @@ body { background: var(--canvas); }
 .tutorial-icon { background: #f4f6f8; border-color: var(--line); }
 .tutorial-item.active .tutorial-icon { color: #bd5908; background: #ffe8ce; border-color: #ffc27f; }
 .tutorial-meta { color: #78838c; }
+.completion-platforms > span { background: #e9f6ee; color: #287a4b; }
 .item-chevron { color: #a4adb4; }
 .list-skeleton, .reader-skeleton div { background: #edf1f3; }
 .mobile-back { background: #fffffff2; color: var(--ink); }
@@ -63,10 +91,17 @@ body { background: var(--canvas); }
 .hero-meta { color: #d8dee2; }
 .hero-meta span:first-child, .hero-content h1 { color: #fff; }
 .tutorial-tabs { background: #fffffff2; }
-.tutorial-tabs button.active { color: #b65307; background: var(--amber-soft); }
-.tutorial-tabs button.active::after { height: 3px; background: var(--amber); }
-.tutorial-tabs button span { background: #e8edf0; }
+.tabs-inner { background: #f2f5f7; }
+.tutorial-tabs button:hover { color: var(--ink); background: #ffffffb3; }
+.tutorial-tabs button.active { color: var(--ink); background: #fff; border-color: #e1e7eb; box-shadow: 0 2px 8px #18212b14; }
+.tutorial-tabs button span { background: #e3e9ed; color: #5f6c77; }
+.tutorial-tabs button.active span { background: var(--amber); color: #fff; }
 .intro-block p { color: #4f5d68; }
+.platform-selector { background: #f7f9fa; border-color: #d9e0e5; }
+.platform-options button { background: #fff; border-color: #d9e0e5; color: var(--ink); }
+.platform-options button:hover { border-color: #f0a15c; background: #fffaf5; }
+.platform-options button.active { color: #fff; border-color: var(--ink); background: var(--ink); box-shadow: 0 7px 18px #18212b24; }
+.platform-options button.active svg { color: #ff9c42; }
 .progress-summary { background: #f7f9fa; }
 .progress-track { background: #dfe5e9; }
 .timeline li.current .timeline-marker { color: #fff; box-shadow: 0 0 0 5px #e8751317; }
@@ -95,6 +130,9 @@ body { background: var(--canvas); }
 .rating-panel p, .rating-panel legend { color: #766b5d; }
 .score-row span { border-color: #e1c8ad; background: #fff; color: #6d6257; }
 .score-row label:hover span, .score-row label.selected span { color: #fff; }
+.rating-panel-success { border-color: #a8d8ba; background: #edf9f1; }
+.rating-confirmation p { color: #3d6b50; }
+.rating-confirmation button { border-color: #9dceb0; background: #fff; color: #1f6940; }
 .request-error { color: var(--danger); }
 .composer, .comment { background: #fff; }
 .composer label { color: #56636d; }
@@ -106,10 +144,17 @@ body { background: var(--canvas); }
 .comment-actions button:hover { color: var(--ink); }
 
 @media (max-width: 1024px) {
-  .app-shell, .app-shell.tutorials-expanded { grid-template-columns: 74px 330px minmax(0, 1fr); }
-  .nav-label, .panel-size-toggle { display: none; }
+  .app-shell { grid-template-columns: 416px minmax(0, 1fr); }
+  .library-shell { grid-template-columns: 74px 330px; }
+  .app-shell.tutorials-collapsed { grid-template-columns: 162px minmax(0, 1fr); }
+  .tutorials-collapsed .library-shell { grid-template-columns: 74px 76px; }
+  .nav-label { display: none; }
 }
 
 @media (max-width: 759px) {
-  .app-shell, .app-shell.tutorials-expanded { grid-template-columns: 72px minmax(0, 1fr); }
+  .app-shell, .app-shell.tutorials-collapsed { display: block; }
+  .library-shell, .tutorials-collapsed .library-shell { grid-template-columns: 72px minmax(0, 1fr); }
+  .library-shell .tutorial-list-panel { box-shadow: none; }
+  .library-shell .sidebar { box-shadow: 4px 0 18px #2e3d4a0f; }
+  .panel-size-toggle { display: none; }
 }

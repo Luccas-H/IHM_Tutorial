@@ -12,6 +12,7 @@ import './styles/global.css'
 import './styles/layout.css'
 import './styles/components.css'
 import './styles/theme-light.css'
+import './styles/theme-dark.css'
 
 const queryClient = new QueryClient({
   defaultOptions: {

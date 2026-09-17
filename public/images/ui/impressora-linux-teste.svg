@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640" role="img">
+  <title>Impressora instalada no Linux</title><desc>Tela mostrando a impressora pronta e o botão para imprimir uma página de teste.</desc>
+  <rect width="1200" height="640" fill="#eef2f5"/><rect x="104" y="56" width="992" height="528" rx="29" fill="#fff" stroke="#d4dce2" stroke-width="2"/>
+  <path d="M133 56h934a29 29 0 0 1 29 29v51H104V85a29 29 0 0 1 29-29z" fill="#24303a"/><text x="154" y="105" fill="#fff" font-family="Arial,sans-serif" font-size="24" font-weight="700">TutorPrint 3200</text>
+  <g transform="translate(164 190)"><rect x="0" y="48" width="174" height="102" rx="18" fill="#287a4b"/><rect x="30" y="0" width="114" height="81" rx="8" fill="#24303a"/><rect x="31" y="128" width="112" height="76" rx="6" fill="#fff" stroke="#a8d8ba" stroke-width="3"/><circle cx="143" cy="92" r="8" fill="#fff"/></g>
+  <circle cx="426" cy="208" r="9" fill="#287a4b"/><text x="451" y="216" fill="#287a4b" font-family="Arial,sans-serif" font-size="18" font-weight="700">Pronta</text><text x="416" y="265" fill="#18212b" font-family="Arial,sans-serif" font-size="31" font-weight="700">TutorPrint 3200</text><text x="416" y="302" fill="#66737d" font-family="Arial,sans-serif" font-size="17">Conectada por USB</text>
+  <rect x="416" y="348" width="606" height="88" rx="14" fill="#f7f9fa" stroke="#d9e0e5"/><text x="448" y="382" fill="#7c8791" font-family="Arial,sans-serif" font-size="14">Fila de impressão</text><text x="448" y="413" fill="#18212b" font-family="Arial,sans-serif" font-size="20" font-weight="700">Nenhum documento aguardando</text>
+  <rect x="720" y="474" width="302" height="56" rx="11" fill="#e87513"/><text x="769" y="510" fill="#fff" font-family="Arial,sans-serif" font-size="17" font-weight="700">Imprimir página de teste</text>
+</svg>

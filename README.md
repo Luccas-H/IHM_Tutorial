@@ -43,6 +43,7 @@ O protótipo tem acesso direto, sem cadastro ou login. Os dados iniciais são de
 - Filtros para Windows, Linux e dispositivos móveis.
 - Cinco tutoriais completos, com sete etapas cada.
 - Linha do tempo com progresso salvo no navegador.
+- Seção **Concluídos** com histórico separado por sistema operacional e reabertura direta.
 - Fotos e exemplos de telas em cada fluxo.
 - Teclas representadas visualmente, como `Win + I` e `Ctrl + Shift + Esc`.
 - Blocos de comandos para Windows e Linux com botão de cópia.
@@ -51,7 +52,8 @@ O protótipo tem acesso direto, sem cadastro ou login. Os dados iniciais são de
 - Fórum por tutorial com apelido, respostas encadeadas e votos positivos.
 - Coluna de tutoriais com largura ajustável no desktop.
 - Layout responsivo para desktop e celular.
-- Interface clara, navegação por teclado e estados de foco visíveis.
+- Temas claro e escuro, com preferência salva e detecção inicial do sistema.
+- Bloom ambiental, transições suaves, navegação por teclado e estados de foco visíveis.
 
 ## Tutoriais incluídos
 
@@ -68,6 +70,7 @@ flowchart LR
     A[Filtrar ou pesquisar] --> B[Escolher um tutorial]
     B --> C[Seguir as etapas visuais]
     C --> D[Marcar etapas concluídas]
+    D --> G[Reabrir em Concluídos]
     D --> E[Avaliar de 1 a 10]
     E --> F[Participar do fórum]
 ```
@@ -75,8 +78,9 @@ flowchart LR
 1. A pessoa filtra a biblioteca pelo dispositivo ou usa a busca.
 2. Ao abrir um tutorial, encontra foto, tempo estimado, dificuldade, nota e quantidade de etapas.
 3. Cada etapa pode ser marcada como concluída. O progresso fica no `localStorage` do navegador.
-4. No final, a pessoa escolhe uma nota entre 1 e 10.
-5. A aba **Ajuda da comunidade** permite publicar dúvidas, responder comentários e votar.
+4. Ao terminar todas as etapas de um sistema, o tutorial entra em **Concluídos** e pode ser reaberto no mesmo contexto de Windows ou Linux.
+5. No final, a pessoa escolhe uma nota entre 1 e 10.
+6. A aba **Ajuda da comunidade** permite publicar dúvidas, responder comentários e votar.
 
 ### Como a nota funciona
 
@@ -103,7 +107,7 @@ flowchart LR
     subgraph Navegador
       UI[React + TypeScript]
       QUERY[TanStack Query]
-      LOCAL[localStorage<br/>progresso, apelido e visitante]
+      LOCAL[localStorage<br/>progresso, concluídos, tema, apelido e visitante]
       UI --> QUERY
       UI <--> LOCAL
     end
@@ -231,7 +235,7 @@ IHM_Tutorial/
 │   ├── domain/         # tipos do domínio
 │   ├── hooks/          # identidade anônima do visitante
 │   ├── lib/            # regras de progresso, filtro e notas
-│   └── styles/         # layout responsivo e tema claro
+│   └── styles/         # layout responsivo e temas claro/escuro
 ├── docker-compose.yml
 ├── package.json
 └── README.md

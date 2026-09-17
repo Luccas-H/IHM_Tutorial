@@ -23,6 +23,7 @@ export interface TutorialStep {
   id: string
   title: string
   body: string
+  platforms?: Platform[]
   media?: StepMedia
   keys?: string[]
   menuPath?: string[]

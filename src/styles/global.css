@@ -17,6 +17,8 @@
   --green: #67c587;
   --green-soft: #1d3326;
   --danger: #ef7b70;
+  --bloom-warm: #ff9f2e33;
+  --bloom-cool: #3f82b52b;
   --radius-lg: 18px;
   --radius-md: 12px;
   --radius-sm: 8px;
@@ -24,7 +26,7 @@
 
 * { box-sizing: border-box; }
 html, body, #root { min-width: 320px; min-height: 100%; margin: 0; }
-body { min-height: 100vh; background: var(--coal); overflow: hidden; }
+body { min-height: 100vh; background: var(--coal); overflow: hidden; transition: background-color 280ms ease, color 280ms ease; }
 button, input, textarea { font: inherit; }
 button { color: inherit; }
 button:focus-visible, input:focus-visible, textarea:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
@@ -38,6 +40,26 @@ button { cursor: pointer; }
 .primary-button:hover { background: #ffad46; transform: translateY(-1px); }
 .primary-button:disabled { cursor: wait; opacity: .7; transform: none; }
 
+html[data-theme] .app-shell,
+html[data-theme] .sidebar,
+html[data-theme] .tutorial-list-panel,
+html[data-theme] .reader-panel,
+html[data-theme] .tutorial-tabs,
+html[data-theme] .step-card { transition-property: background-color, border-color, box-shadow, color; transition-duration: 240ms; transition-timing-function: ease; }
+
+/* troca de tema: crossfade da tela inteira (View Transitions) */
+html.view-transitioning *, html.view-transitioning *::before, html.view-transitioning *::after { transition: none !important; }
+::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation-duration: 420ms; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+/* painéis animam tamanho ao abrir/fechar a biblioteca sem esticar o conteúdo */
+.library-shell .sidebar { view-transition-name: panel-filter; }
+.library-shell .tutorial-list-panel { view-transition-name: panel-library; }
+.reader-panel { view-transition-name: panel-reader; }
+::view-transition-group(panel-library), ::view-transition-group(panel-reader) { overflow: clip; border-radius: var(--radius-lg); }
+::view-transition-old(panel-library), ::view-transition-new(panel-library) { width: auto; height: 100%; object-fit: none; object-position: left top; }
+::view-transition-old(panel-reader), ::view-transition-new(panel-reader) { width: auto; height: 100%; object-fit: none; object-position: center top; left: 50%; translate: -50% 0; }
+/* fallback para navegadores sem View Transitions */
+html.theme-fading *, html.theme-fading *::before, html.theme-fading *::after { transition: background-color 380ms ease, border-color 380ms ease, color 380ms ease, fill 380ms ease, stroke 380ms ease, box-shadow 380ms ease !important; }
+
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; transition-delay: 0s !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
 }
